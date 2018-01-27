@@ -9,3 +9,4 @@ def fizzbuzz(n):
         str(n)
 
 print("\n".join(fizzbuzz(n) for n in range(1, 100))
+
