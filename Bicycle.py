@@ -17,7 +17,6 @@ class BikeShop(object):
         for bike in self.inventory:
             print(bike.cost * self.margin)
         
-    
     def buy(self, customer):
         for bike in self.inventory:
             if bike.cost <= customer.funds:
@@ -25,25 +24,18 @@ class BikeShop(object):
                 remaining = customer.funds - bike.cost
                 print(customer.funds, bike.cost, remaining, bike.model)
                 return inventory
-                
-                
-                
-
-        
         
 class Customer(object):
     def __init__(self, name, funds, bike = None):
         self.name = name
         self.funds = funds
 
-        
     def afford(self,shop):
         for bike in shop.inventory:
             if bike.cost <= self.funds:
                 print(self.name, bike.model, bike.cost)
-            
-        
-    
+      
+# creating bikes    
 first = Bicycle('Kids', 100, 100)
 second = Bicycle('Cruiser', 100, 200)
 third = Bicycle('BMX', 100, 300)
@@ -52,12 +44,12 @@ fifth = Bicycle('Racer', 100, 750)
 sixth = Bicycle('Multi-Purpose', 100, 1000)
 inventory = [first, second, third, fourth, fifth, sixth]
 
+# creating shop
 TheShop = BikeShop("The Shop", inventory, 1.2)
+john = Customer('john', 200)
+jerry = Customer('john', 500)
+jones = Customer('john', 1000)
 
-john = Customer('john', 200, False)
-jerry = Customer('john', 500, False)
-jones = Customer('john', 1000, False)
-
+# testing methods    
 john.afford(TheShop)
-
 TheShop.buy(jerry)
