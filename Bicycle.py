@@ -15,15 +15,20 @@ class BikeShop(object):
     
     def printInv(self):
         for bike in self.inventory:
-            print(bike.cost * self.margin)
+            print(bike.model, bike.cost * self.margin)
         
     def buy(self, customer):
         for bike in self.inventory:
-            if bike.cost <= customer.funds:
+            if bike.cost * self.margin <= customer.funds:
                 self.inventory.remove(bike)
-                remaining = customer.funds - bike.cost
-                print(customer.funds, bike.cost, remaining, bike.model)
-                return inventory
+                remaining = customer.funds - (bike.cost*self.margin)
+                customer.bike = bike
+                print(customer.funds, bike.cost*self.margin, remaining, bike.model)
+                return self.inventory
+                return customer.bike
+                
+        ## script returining remaining inventory and profit
+                
         
 class Customer(object):
     def __init__(self, name, funds, bike = None):
@@ -35,21 +40,3 @@ class Customer(object):
             if bike.cost <= self.funds:
                 print(self.name, bike.model, bike.cost)
       
-# creating bikes    
-first = Bicycle('Kids', 100, 100)
-second = Bicycle('Cruiser', 100, 200)
-third = Bicycle('BMX', 100, 300)
-fourth = Bicycle('Mountain', 100, 500)
-fifth = Bicycle('Racer', 100, 750)
-sixth = Bicycle('Multi-Purpose', 100, 1000)
-inventory = [first, second, third, fourth, fifth, sixth]
-
-# creating shop
-TheShop = BikeShop("The Shop", inventory, 1.2)
-john = Customer('john', 200)
-jerry = Customer('john', 500)
-jones = Customer('john', 1000)
-
-# testing methods    
-john.afford(TheShop)
-TheShop.buy(jerry)
