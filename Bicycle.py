@@ -26,10 +26,7 @@ class BikeShop(object):
                 print(customer.funds, bike.cost*self.margin, remaining, bike.model)
                 return self.inventory
                 return customer.bike
-                
-        ## script returining remaining inventory and profit
-                
-        
+      
 class Customer(object):
     def __init__(self, name, funds, bike = None):
         self.name = name
